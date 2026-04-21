@@ -46,6 +46,20 @@ const Login = () => {
         }
     };
 
+    const handleGoogleSignIn = async () => {
+        setError('');
+        setMessage('');
+        setLoading(true);
+        try {
+            await signInWithGoogle();
+            navigate('/');
+        } catch (err) {
+            setError('Google Sign-In failed: ' + err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 px-4 sm:px-6 lg:px-8">
             <div className="max-w-md w-full space-y-8 bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700">
@@ -136,8 +150,9 @@ const Login = () => {
 
                     <button
                         type="button"
-                        onClick={() => signInWithGoogle()}
-                        className="w-full flex justify-center items-center py-3 px-4 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition duration-200"
+                        onClick={handleGoogleSignIn}
+                        disabled={loading}
+                        className="w-full flex justify-center items-center py-3 px-4 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition duration-200 disabled:opacity-50"
                     >
                         <svg className="h-5 w-5 mr-2" viewBox="0 0 24 24">
                             <path

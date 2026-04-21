@@ -21,6 +21,16 @@ const Signup = () => {
         }
     };
 
+    const handleGoogleSignIn = async () => {
+        setError('');
+        try {
+            await signInWithGoogle();
+            navigate('/');
+        } catch (errorMessage) {
+            setError('Google Sign-Up failed: ' + errorMessage.message);
+        }
+    };
+
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 px-4 sm:px-6 lg:px-8">
             <div className="max-w-md w-full space-y-8 bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700">
@@ -29,7 +39,7 @@ const Signup = () => {
                         Create Account
                     </h2>
                     <p className="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
-                        Join FinTrackr today
+                        Join FinTracker today
                     </p>
                 </div>
                 {error && (
@@ -114,7 +124,7 @@ const Signup = () => {
 
                         <button
                             type="button"
-                            onClick={() => signInWithGoogle()}
+                            onClick={handleGoogleSignIn}
                             className="w-full flex justify-center items-center py-3 px-4 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition duration-200"
                         >
                             <svg className="h-5 w-5 mr-2" viewBox="0 0 24 24">

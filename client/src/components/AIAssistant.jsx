@@ -7,7 +7,7 @@ const AIAssistant = () => {
     const { user } = useAuth();
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState([
-        { role: 'assistant', content: 'Hi! I\'m your FinTrackr AI Assistant. How can I help you today?' }
+        { role: 'assistant', content: 'Hi! I\'m your FinTracker AI Assistant. How can I help you today?' }
     ]);
     const [input, setInput] = useState('');
     const [loading, setLoading] = useState(false);
@@ -65,7 +65,7 @@ const AIAssistant = () => {
                     <div className="bg-primary p-4 flex justify-between items-center text-white">
                         <div className="flex items-center gap-2">
                             <Bot className="h-5 w-5" />
-                            <h3 className="font-bold">FinTrackr AI</h3>
+                            <h3 className="font-bold">FinTracker AI</h3>
                         </div>
                         <button onClick={() => setIsOpen(false)} className="hover:bg-indigo-700 p-1 rounded transition-colors">
                             <X className="h-5 w-5" />
