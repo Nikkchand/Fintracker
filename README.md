@@ -1,75 +1,61 @@
-# FinTrackr - Personal Finance Manager
+# FinTracker - Personal Finance Manager
 
-A modern, full-stack personal finance application built with React, Node.js, and Supabase.
+A modern, full-stack personal finance application built with React and Google Firebase (Serverless).
 
 ## Features
-- **Dashboard**: Overview of finances with summary cards and charts.
-- **Transactions**: Add, edit, delete, and filter transactions.
-- **Budgets**: Set monthly limits and track usage.
-- **Goals**: Create savings goals and track progress.
+- **Dashboard**: Real-time overview of finances with summary cards and charts.
+- **Transactions**: Add, edit, delete, and filter transactions smoothly.
+- **Budgets**: Set monthly limits and track your categorical usage.
+- **Goals**: Create savings goals and track financial progress.
 - **Analytics**: Visual breakdown of spending by category and time.
-- **AI Assistant**: Chat with an AI for financial insights (Mocked or OpenAI).
-- **Authentication**: Secure login and signup via Supabase.
+- **Authentication**: Secure Google Sign-In and Email Authentication via Firebase Auth.
+- **Serverless Data**: Direct, lightning fast queries via Cloud Firestore.
 
 ## Prerequisites
 - Node.js installed
-- Supabase Project/Account
+- Google Firebase Account
 
 ## Setup Instructions
 
-### 1. Database Setup
-1. Create a project on [Supabase.com](https://supabase.com/).
-2. Go to the SQL Editor in Supabase.
-3. Run the content of `server/database/schema.sql` to create tables and policies.
-4. Get your `SUPABASE_URL` and `SUPABASE_ANON_KEY` from Project Settings > API.
+### 1. Firebase Setup
+1. Create a project on the [Firebase Console](https://console.firebase.google.com/).
+2. Enable **Firestore Database** and **Authentication** (Google & Email/Password providers).
+3. Under Firestore Rules, configure your permissions to lock down data by `user_id`.
+4. Register a Web App in the project settings and copy your Firebase SDK config keys.
 
-### 2. Backend Setup
-1. Navigate to the `server` directory:
-   ```bash
-   cd server
-   ```
-2. Install dependencies (if not already):
-   ```bash
-   npm install
-   ```
-3. Create a `.env` file (copy from `.env.example`) and fill in your details:
-   ```
-   PORT=5000
-   SUPABASE_URL=your_supabase_url
-   SUPABASE_KEY=your_supabase_key
-   OPENAI_API_KEY=your_openai_key (optional)
-   ```
-4. Start the server:
-   ```bash
-   node index.js
-   ```
-   Server runs on http://localhost:5000.
-
-### 3. Frontend Setup
+### 2. Frontend Setup
 1. Navigate to the `client` directory:
    ```bash
    cd client
    ```
-2. Install dependencies (if not already):
+2. Install dependencies:
    ```bash
    npm install
    ```
-3. Create a `.env` file (copy from `.env.example`):
-   ```
-   VITE_SUPABASE_URL=your_supabase_url
-   VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+3. Ensure your `.env` file is properly configured with your Firebase variables:
+   ```env
+   VITE_FIREBASE_API_KEY=your_key
+   VITE_FIREBASE_AUTH_DOMAIN=your_domain
+   VITE_FIREBASE_PROJECT_ID=your_project
+   VITE_FIREBASE_STORAGE_BUCKET=your_bucket
+   VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender
+   VITE_FIREBASE_APP_ID=your_app_id
    ```
 4. Start the development server:
    ```bash
    npm run dev
    ```
-   App runs on http://localhost:5173.
 
 ## Deployment
-- **Frontend**: Ready for Vercel. Import the `client` folder.
-- **Backend**: Deploy to Vercel (requires adaptation) or Render/Heroku.
+This app is fully optimized for **Firebase Hosting**.
+Run these commands locally to deploy your project to the web:
+```bash
+cd client
+npm run build
+cd ..
+firebase deploy --only hosting
+```
 
 ## Tech Stack
 - **Frontend**: React, Vite, TailwindCSS, Recharts, Lucide React
-- **Backend**: Node.js, Express
-- **Database**: Supabase (PostgreSQL)
+- **Backend / Database**: Google Firebase (Authentication, Cloud Firestore, Hosting)
