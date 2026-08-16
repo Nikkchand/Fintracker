@@ -17,6 +17,7 @@ router.get('/', authenticateUser, async (req, res) => {
     const transactions = await db.getTransactions(userId);
     const rawBudgets = await db.getBudgets(userId);
     const rawGoals = await db.getGoals(userId);
+    const recurring = await db.getRecurring(userId);
 
     // Single source of truth calculations
     const summary = calculateMonthlySummary(transactions);
@@ -59,6 +60,7 @@ router.get('/', authenticateUser, async (req, res) => {
         recentTransactions,
         budgets,
         goals,
+        recurring,
         categorySpending: categoryData
       }
     });

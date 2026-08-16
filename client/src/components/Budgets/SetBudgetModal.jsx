@@ -28,7 +28,7 @@ const SetBudgetModal = ({ isOpen, onClose, onBudgetSet }) => {
     try {
       const budgetData = {
         category: category.name,
-        amount: Number(amount)
+        limit_amount: Number(amount)  // backend reads limit_amount || limit, not 'amount'
       };
 
       if (onBudgetSet) {

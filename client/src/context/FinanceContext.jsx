@@ -46,12 +46,13 @@ export const FinanceProvider = ({ children }) => {
       setLoading(true);
       const res = await api.get('/dashboard');
       if (res.data && res.data.success) {
-        const { accounts, transactions, budgets, goals, summary, categorySpending } = res.data.data;
+        const { accounts, transactions, budgets, goals, summary, categorySpending, recurring } = res.data.data;
 
         setAccounts(accounts || []);
         setTransactions(transactions || []);
         setBudgets(budgets || []);
         setGoals(goals || []);
+        setRecurringRules(recurring || []);
         setSummary(summary || { income: 0, expenses: 0, savings: 0, savingsRate: 0, balance: 0, netWorth: 0 });
         setCategorySpending(categorySpending || []);
       }
