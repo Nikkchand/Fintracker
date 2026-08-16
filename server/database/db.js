@@ -18,7 +18,9 @@ const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: (isProduction || hasSslRequirement)
     ? { rejectUnauthorized: false }
-    : false
+    : false,
+  // Force IPv4 to avoid ENETUNREACH on Render (Supabase IPv6 unreachable from Render free tier)
+  family: 4
 });
 
 // Test connection on startup
